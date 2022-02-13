@@ -1,0 +1,5 @@
+api/venv
+.env
+db/data
+.idea
+.DS_Store
