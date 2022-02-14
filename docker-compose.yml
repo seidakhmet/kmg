@@ -14,14 +14,3 @@ services:
     ports:
       - "10001:5432"
     restart: always
-
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: kmg_api
-    ports:
-      - "10000:80"
-    depends_on:
-      - db
-    restart: "always"

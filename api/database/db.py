@@ -47,6 +47,7 @@ def save_field_data(instances: list, path: str, update: bool = False) -> dict:
                     path) is str else "File" + " file parsing rolled back. One or more of the rows is already exists in database."
             }
         return update_exists_rows(instances, path)
+    print("File successfully parsed")
     return {"status": "Success", "message": "Success"}
 
 
@@ -64,6 +65,7 @@ def update_exists_rows(instances: list, path: str) -> dict:
         print("Error:", e)
         print("Can't to update exist rows in the database. File:", path)
         return {"status": "Fail", "message": "Can't to update exist rows in the database"}
+    print("File successfully parsed")
     return {"status": "Success", "message": "Success"}
 
 

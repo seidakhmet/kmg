@@ -17,11 +17,15 @@ def get_duration_in_seconds(p: dt.time) -> int:
 
 
 def parse_excel_workbook(path, field: str, date: dt.datetime, update: bool = False) -> dict:
-    try:
-        sheet = pd.read_excel(path, header=None, skiprows=1)
-    except XLRDError:
-        print(path, "is not Excel file")
-        return {"status": "Fail", "message": path if type(path) is str else "File" + " is not Excel file"}
+    if os.path.exists(path):
+        try:
+            sheet = pd.read_excel(path, header=None, skiprows=1)
+        except XLRDError:
+            print(path, "is not Excel file")
+            return {"status": "Fail", "message": path if type(path) is str else "File" + " is not Excel file"}
+    else:
+        print(path, "file not exist")
+        return {"status": "Fail", "message": path if type(path) is str else "File" + " is not exist"}
 
     data = []
     for index, value in sheet.iterrows():
@@ -111,7 +115,6 @@ if __name__ == "__main__":
             if os.path.exists(args.file):
                 field, date = prepare_data(args.file)
                 parse_excel_workbook(args.file, field, date, args.update)
-                print("File successfully parsed")
             else:
                 print(args.file, "file is not exists")
             exit(0)
