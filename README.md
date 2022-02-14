@@ -20,6 +20,14 @@ $ docker-compose up -d
 $ cd ./api
 ```
 
+* Создайте изолированную среду Python и установите зависимости
+```shell
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
+
+
 * Инициализируйте БД
 ```shell
 $ python main.py -i
